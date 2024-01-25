@@ -5,16 +5,16 @@ http.createServer(function (req, res) {
     if (req.url == '/fileupload') {
       var form = new formidable.IncomingForm();
       form.parse(req, function (err, fields, files) {
-        var oldpath = files.filetoupload.filepath;
-        console.log(oldpath);
+        var oldpath = String(files.filetoupload[0].filepath);
+        console.log(oldpath)
         res.write("hello");
-        res.end();
-        // var newpath = 'Downloads/' + files.filetoupload.originalFilename;
-        // fs.rename(oldpath, newpath, function (err) {
-        //   if (err) throw err;
-        //   res.write('File uploaded and moved!');
-        //   res.end();
-        // });
+        console.log("abc", files.filetoupload[0].originalFilename)
+        var newpath = './Downloads/' + files.filetoupload[0].originalFilename;
+        fs.rename(oldpath, newpath, function (err) {
+          if (err) throw err;
+          res.write('File uploaded and moved!');
+          res.end();
+        });
    });
     } else {
       res.writeHead(200, {'Content-Type': 'text/html'});

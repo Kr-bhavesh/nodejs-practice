@@ -1,0 +1,5 @@
+hey there
+starting first day with linux commands and github
+file number2
+using nano
+
