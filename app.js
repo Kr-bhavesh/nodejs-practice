@@ -2,7 +2,6 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
 const router = express.Router();
-const bodyparser = require("body-parser");
 const path = require("path");
 const port = 3000;
 app.set("view engine", "ejs");
@@ -10,7 +9,7 @@ app.use(express.static("public")); //in order to use the static files present pu
 app.use(express.json());
 app.use(router);
 app.use("/public", express.static(path.join(__dirname, "static")));
-app.use(bodyparser.urlencoded({ extended: "false" }));
+app.use(bodyParser.urlencoded({ extended: "false" }));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public/html/", "index.html"));
   //   res.send("Hello world from serius albus potter");
@@ -25,7 +24,7 @@ app.get("/engine", (req, res) => {
 app.get("/r1", (req, res) => {
   console.dir(req.hostname); //ge the hostname
   console.dir(req.ip); //get ip
-  console.dir(req.originalUrl);
+  console.dir(req.originalUrl);//url
   console.dir(req.params.name); //returns the name of parameter provided with route like /name currently i hadn't provided so it would return undefined
   console.dir(req.path); //simply returns the path
   console.dir(req.protocol); //protocol itself
