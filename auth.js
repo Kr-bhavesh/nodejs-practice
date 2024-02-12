@@ -2,11 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const router = require('./routes/productRoutes');
-
+const router = require('./routes/userroutes');
+const protect = require('./routes/protectroutes')
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
-app.use('/api/products',router);
+app.use('/api',router);
+app.use('/protect',protect);
+
 const mongoose_url = process.env.MONGOOSE_URL;
 const port = process.env.PORT;
 mongoose
